@@ -1,74 +1,67 @@
-# Project Name
+# Build your own linter
 
-> One paragraph statement about the project.
+## Project specifications
 
-![screenshot](./app_screenshot.png)
+Capstone project for creating your own linter, it is required for this project to build your own linter developed with Ruby, for this project is required to check for warnings and errors on YAML, CSV, JSON and HTML parsed files.
 
-Additional description about the project and its features.
+
+## Link to assignment
+
+the assignment can be found  [here](https://www.notion.so/Build-your-own-linter-b17a3c22f7b940c98ca1980250720769).
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+Concepts used on this project
+
+- Ruby
+- Loops
+- Yield
+- Procs
+- UnitTest
+
+Tools used on this project
+
+- Visual Studio Code
+- VSCode Ruby by Stafford Brunk
+- Rubocop
+
+
+## Screenshot
+
+![screenshot](./img/app_screenshot.png)
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
-
-
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
+You can see the [live preview](#)
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Ruben Paz Chuspe**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@rubenpazch](https://github.com/rubenpazch)
+- Linkedin: [rubenpch](https://www.linkedin.com/in/rubenpch/)
 
-👤 **Author2**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+## Contributing
 
-## 🤝 Contributing
+This is an education project as a part of the Microverse so contributing is not accepted. 
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues](https://github.com/rubenpazch/capstone-conference-page/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
+## Acknowledgements
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
++ [Microverse](https://www.microverse.org/).
++ [Github](http://github.com/).
++ [The Odin Project](theodinproject.com/).
 
-## 📝 License
+## License
 
 This project is [MIT](lic.url) licensed.
+
