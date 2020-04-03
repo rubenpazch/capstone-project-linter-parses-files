@@ -1,0 +1,3 @@
+class Sass < Files
+
+end
