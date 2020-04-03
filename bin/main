@@ -1,11 +1,14 @@
 #!/usr/bin/env ruby
-require_relative '../lib/modules/file_helper'
+puts "!hello"
 
-if ARGV.empty?
-	puts "Usage: #{ __FILE__ } <name>"
-	exit(2)
-end
-puts "Hello #{ARGV[0].capitalize}"
+
+#require_relative '../lib/modules/file_helper'
+#
+#if ARGV.empty?
+#	puts "Usage: #{ __FILE__ } <name>"
+#	exit(2)
+#end
+#puts "Hello #{ARGV[0].capitalize}"
 
 
 
