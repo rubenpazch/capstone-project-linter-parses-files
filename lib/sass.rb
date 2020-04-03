@@ -1,3 +1,2 @@
 class Sass < Files
-
 end
