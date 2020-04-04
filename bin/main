@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/modules/file_helper'
+require_relative '../lib/modules/rules_helper'
+require_relative '../lib/modules/validations_helper'
 input_array = ARGV
 if !FileValidation.validate_path?(input_array[0])
   puts "We need a file: #{__FILE__} <name>"
@@ -15,16 +17,16 @@ elsif !FileValidation.file_is_readable?(input_array[0])
   puts "We can't not read this file"
   exit(2)
 elsif FileValidation.file_have_zero_lines?(input_array[0])
-  puts "The file is valid but is empty"
+  puts 'The file is valid but is empty'
   exit(2)
 else
   puts 'it is a valid file'
 end
 
 File.open(input_array[0]).each do |x|
-	p x
+  p x.match(%r{^/*..})[0].scan(/./).last
+  break
 end
-
 
 # puts File.absolute_path(ARGV[0])
 # puts File.atime(ARGV[0])
