@@ -28,7 +28,11 @@ module LineValidations
   end
 
   def self.comment_white_space_inside_after(line, row)
-    if line.match(%r{^/\*.})[0].scan(/./).nil?
+    if line == "\n"
+      nil
+    elsif line.match(%r{^/\*.}).nil?
+      nil
+    elsif line.match(%r{^/\*.})[0].scan(/./).nil?
       nil
     elsif line.match(%r{^/\*.})[0].scan(/./).last == ' '
       nil
@@ -43,7 +47,11 @@ module LineValidations
 
   def self.comment_white_space_inside_before(line, row)
     index = line =~ %r{\*/}
-    if line.match(%r{\*/})[0].nil?
+    if line == "\n"
+      nil
+    elsif line.match(%r{\*/}).nil?
+      nil
+    elsif line.match(%r{\*/})[0].nil?
       nil
     elsif line[index - 1] == ' '
       nil
@@ -67,6 +75,22 @@ module LineValidations
     end
   end
 
+  def self.expected_empty_line_before_comment(arr)
+    new_arr = []
+    arr.each { |x| new_arr << x }
+
+    new_arr.each_with_index do |line, idx|
+      next unless check_is_comment_close?(line)
+      next unless idx != 0
+
+      next if new_arr.fetch(idx - 1) == "\n"
+
+      @list_errors << Error.new(Variables::COMMENT_EMPTY_LINE_BEFORE,
+                                Variables.expected_empty_line_before_comment,
+                                Variables::LINTER, idx + 1, 1)
+    end
+  end
+
   def self.show_list_errors
     @list_errors
   end
@@ -74,5 +98,67 @@ module LineValidations
   def self.comment_white_space_inside_validations(line, row)
     @list_errors << LineValidations.comment_white_space_inside_after(line, row)
     @list_errors << LineValidations.comment_white_space_inside_before(line, row)
+  end
+
+  def self.expected_indentation_of_zero_spaces(arr)
+    new_arr = []
+    arr.each { |x| new_arr << x }
+
+    new_arr.each_with_index do |line, idx|
+      next unless line[0] == ' '
+
+      @list_errors << Error.new(Variables::INDENTATION,
+                                Variables.expected_indentation_of_zero_spaces,
+                                Variables::LINTER, idx + 1, 1)
+    end
+  end
+
+  def self.order_array_by_row(arr)
+    newarr = []
+    ordered_array = []
+    arr.each { |x| newarr << x unless x.nil? }
+    len = newarr.length
+
+    current = newarr[0]
+    i = 1
+    while i < len
+      if current.row > newarr[i].row
+        ordered_array << newarr[i]
+      else
+        ordered_array << current
+        current = newarr[i]
+      end
+      ordered_array << newarr[i] if i == len - 1
+      i += 1
+    end
+    ordered_array
+  end
+
+  def self.order_array_by_column(arr)
+    newarr = []
+    ordered_array = []
+    arr.each { |x| newarr << x unless x.nil? }
+    len = newarr.length
+
+    current = newarr[0]
+    i = 1
+    while i < len
+      if current.row == newarr[i].row && current.column > newarr[i].column
+        ordered_array << newarr[i]
+        ordered_array << current if i == len - 1
+      else
+        ordered_array << current
+        current = newarr[i]
+        ordered_array << current if i == len - 1
+      end
+
+      i += 1
+    end
+    ordered_array
+  end
+
+  def self.index_of_last_empty_char(line)
+    arr = line.chars
+    puts arr.inspect
   end
 end

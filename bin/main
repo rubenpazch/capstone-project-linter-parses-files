@@ -25,17 +25,20 @@ end
 
 total_lines = File.open(input_array[0]).count
 
-j = 0
 row = 1
-File.open(input_array[0]).each do |line|
-  # n = x =~ %r{/\*}
-  # m = x =~ %r{\*/}
-  # p line_file.match(/\n/)
+File.open(input_array[0]).each_with_index do |line, _idx|
   LineValidations.comment_white_space_inside_validations(line, row)
-	LineValidations.unexpected_missing_end_of_source_newline(line, row) if total_lines == row
+  LineValidations.unexpected_missing_end_of_source_newline(line, row) if total_lines == row
   row += 1
-  j += 1
 end
 
+LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
+
 arr = LineValidations.show_list_errors
+# ordered_by_row = LineValidations.order_array_by_row(arr)
+# ordered_by_column = LineValidations.order_array_by_column(ordered_by_row)
 arr.each { |x| p x.show_message unless x.nil? }
+
+# n = x =~ %r{/\*}
+# m = x =~ %r{\*/}
+# p line_file.match(/\n/)
