@@ -1,4 +1,9 @@
 class Message
-    attr_writer :name, :file_name, :file_type, :content
-    attr_reader :name, :file_name, :file_type, :content
+  attr_accessor :content, :type, :row, :column
+  def initialize(content, type, row, column)
+    @content = content
+    @type = type
+    @row = row
+    @column = column
+  end
 end

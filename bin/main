@@ -3,6 +3,8 @@
 require_relative '../lib/modules/file_helper'
 require_relative '../lib/modules/rules_helper'
 require_relative '../lib/modules/validations_helper'
+require_relative '../lib/modules/variables_helper'
+
 input_array = ARGV
 if !FileValidation.validate_path?(input_array[0])
   puts "We need a file: #{__FILE__} <name>"
@@ -19,45 +21,21 @@ elsif !FileValidation.file_is_readable?(input_array[0])
 elsif FileValidation.file_have_zero_lines?(input_array[0])
   puts 'The file is valid but is empty'
   exit(2)
-else
-  puts 'it is a valid file'
 end
 
-File.open(input_array[0]).each do |x|
-  p x.match(%r{^/*..})[0].scan(/./).last
-  break
+total_lines = File.open(input_array[0]).count
+
+j = 0
+row = 1
+File.open(input_array[0]).each do |line|
+  # n = x =~ %r{/\*}
+  # m = x =~ %r{\*/}
+  # p line_file.match(/\n/)
+  LineValidations.comment_white_space_inside_validations(line, row)
+	LineValidations.unexpected_missing_end_of_source_newline(line, row) if total_lines == row
+  row += 1
+  j += 1
 end
 
-# puts File.absolute_path(ARGV[0])
-# puts File.atime(ARGV[0])
-# puts File.basename(ARGV[0])
-# puts File.directory?(ARGV[0])
-# puts File.dirname(ARGV[0])
-
-# puts File.zero?(ARGV[0])
-# puts File.exist?(ARGV[0])
-
-# puts File.extname(ARGV[0])
-# puts File.ftype(ARGV[0])
-# puts File.path(ARGV[0])
-# puts File.split(ARGV[0])
-# puts File.split(ARGV[0])
-
-# File.open(ARGV[0]).each do |x|
-#  p x
-# end
-
-# input_array = ARGV
-#
-#
-#
-# if (FileValidation.validate_path(input_array))
-#   File.open('C:\wamp64\www\capstone-conference-page\scss\_aboutcover.scss').each do |x|
-#     p x
-#   end
-#
-# else
-#   p 'empty'
-# end
-#
-#
+arr = LineValidations.show_list_errors
+arr.each { |x| p x.show_message unless x.nil? }
