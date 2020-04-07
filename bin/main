@@ -41,26 +41,20 @@ end
 
 results2 = LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
 
-results2.show_list_errors.each do |x| 
-	if x != nil
-		results.add_errors_list(x)
-	end
+results2.show_list_errors.each do |x|
+  results.add_errors_list(x) unless x.nil?
 end
 
 results3 = LineValidations.expected_indentation_of_zero_spaces(File.open(input_array[0]))
 
-results3.show_list_errors.each do |x| 
-	if x!= nil
-		results.add_errors_list(x)
-	end
+results3.show_list_errors.each do |x|
+  results.add_errors_list(x) unless x.nil?
 end
 
 results4 = LineValidations.expected_indentation_of_2_spaces(File.open(input_array[0]))
 
 results4.show_list_errors.each do |x|
-	if x!= nil
-	 	results.add_errors_list(x)
-	end
+  results.add_errors_list(x) unless x.nil?
 end
 
 # arr = LineValidations.show_list_errors
