@@ -1,7 +1,7 @@
 require_relative '../lib/modules/variables_helper'
 require_relative '../lib/message'
 
-class Warning
+class Warning < Message
   attr_writer :detail
   attr_reader :detail
 
