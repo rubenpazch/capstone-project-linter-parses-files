@@ -3,6 +3,8 @@ require_relative '../../lib/list_errors'
 require_relative '../../lib/modules/util'
 require_relative '../../lib/modules/variables_helper'
 # rubocop:disable  Metrics/ModuleLength
+# rubocop:disable Style/GuardClause
+# rubocop:disable Layout/LineLength
 module LineValidations
   @linters = Linters.new
   def self.check_is_comment?(line)
@@ -66,9 +68,8 @@ module LineValidations
 
   def self.unexpected_missing_end_of_source_newline(line, row)
     column = line.length
-    # rubocop:disable Layout/LineLength
+
     line.match(/\n/).nil? ? Error.new(Variables::NO_MISSING_END_OF_SOURCE_NEWLINE, Variables.unexpected_missing_end_of_source_newline, Variables::LINTER, row, column) : nil
-    # rubocop:enable Layout/LineLength
   end
 
   def self.expected_empty_line_before_comment(arr)
@@ -122,7 +123,6 @@ module LineValidations
   def self.expected_indentation_of_2_spaces(arr)
     @linters = Linters.new
     arr.each_with_index do |line, idx|
-      # rubocop:disable Style/GuardClause
       if line.match(%r{/\*}).nil? && line.match(/\./).nil? && line.match(/\#/).nil?
         next if line.match(/\}/)
         next if line.match(/\\n/)
@@ -136,9 +136,10 @@ module LineValidations
       else
         next
       end
-      # rubocop:enable Style/GuardClause
     end
     @linters
   end
 end
+# rubocop:enable Layout/LineLength
+# rubocop:enable Style/GuardClause
 # rubocop:enable  Metrics/ModuleLength
