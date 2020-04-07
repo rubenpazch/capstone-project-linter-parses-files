@@ -6,6 +6,7 @@ module Util
     len = newarr.length
 
     current = newarr[0]
+
     i = 1
     while i < len
       if current.row > newarr[i].row

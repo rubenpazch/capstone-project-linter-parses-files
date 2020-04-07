@@ -83,11 +83,12 @@ module LineValidations
       @linters.add_errors_list(Error.new(Variables::COMMENT_EMPTY_LINE_BEFORE,
                                          Variables.expected_empty_line_before_comment,
                                          Variables::LINTER, idx + 1, 1))
-    end
+		end		
     @linters
   end
 
-  def self.expected_indentation_of_zero_spaces(arr)
+	def self.expected_indentation_of_zero_spaces(arr)
+		@linters = Linters.new
     arr.each_with_index do |line, idx|
       if !line.match(%r{/\*}).nil?
         next unless line[0] == ' '
@@ -109,6 +110,26 @@ module LineValidations
         column = Util.index_white_space_string(line)
         @linters.add_errors_list(Error.new(Variables::INDENTATION,
                                            Variables.expected_indentation_of_zero_spaces,
+                                           Variables::LINTER, idx + 1, column))
+      else
+        next
+      end
+    end
+    @linters
+	end
+	
+	def self.expected_indentation_of_2_spaces(arr)		
+		@linters=Linters.new
+		arr.each_with_index do |line, idx|			
+			if line.match(%r{/\*}).nil? && line.match(/\./).nil? && line.match(/\#/).nil?								
+				next if line.match(%r{\}}) 
+				next if line.match(%r{\\n}) 								
+				next if line.match(/^\s\s/) 								
+				next if (line =~ /\n/)== 0 
+
+        column = Util.index_white_space_string(line)
+        @linters.add_errors_list(Error.new(Variables::INDENTATION,
+                                           Variables.expected_indentation_of_2_spaces,
                                            Variables::LINTER, idx + 1, column))
       else
         next

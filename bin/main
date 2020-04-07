@@ -3,6 +3,7 @@
 require_relative '../lib/modules/file_helper'
 require_relative '../lib/modules/validations_helper'
 require_relative '../lib/modules/variables_helper'
+require_relative '../lib/modules/util'
 require_relative '../lib/list_errors'
 
 input_array = ARGV
@@ -39,17 +40,33 @@ temp_array.each do |line|
 end
 
 results2 = LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
-results2.show_list_errors.each { |x| results.add_errors_list(x) unless x.nil? }
+
+results2.show_list_errors.each do |x| 
+	if x != nil
+		results.add_errors_list(x)
+	end
+end
 
 results3 = LineValidations.expected_indentation_of_zero_spaces(File.open(input_array[0]))
-results3.show_list_errors.each { |x| results.add_errors_list(x) unless x.nil? }
+
+results3.show_list_errors.each do |x| 
+	if x!= nil
+		results.add_errors_list(x)
+	end
+end
+
+results4 = LineValidations.expected_indentation_of_2_spaces(File.open(input_array[0]))
+
+results4.show_list_errors.each do |x|
+	if x!= nil
+	 	results.add_errors_list(x)
+	end
+end
 
 # arr = LineValidations.show_list_errors
-# ordered_by_row = LineValidations.order_array_by_row(arr)
+
+# ordered_by_row = Util.order_array_by_row(results.show_list_errors)
 # ordered_by_column = LineValidations.order_array_by_column(ordered_by_row)
 
+# ordered_by_row.each { |x| p x.show_message unless x.nil? }
 results.show_list_errors.each { |x| p x.show_message unless x.nil? }
-
-# n = x =~ %r{/\*}
-# m = x =~ %r{\*/}
-# p line_file.match(/\n/)

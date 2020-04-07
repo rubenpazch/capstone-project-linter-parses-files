@@ -56,6 +56,7 @@ This project includes the next parts:
 	+ Unexpected missing end of source newline
 	+ Expected empty line before comment
 	+ Expected indentation of zero spaces
+	+ Expected indentation of 2 spaces
 
 + RSpec test cases
 
@@ -121,7 +122,47 @@ Good code:
 /* comment */
 ```
 
+Bad code: 
+```CSS
+  .enlarge {
+	font-size: 14px;
+```
+Good code:
+```CSS
+.enlarge {
+	font-size: 14px;
+```
 
+
+Bad code: 
+```CSS
+  #enlarge {
+	font-size: 14px;
+```
+Good code:
+```CSS
+#enlarge {
+	font-size: 14px;
+```
+
+Expected indentation of 2 spaces
+
+Bad code: 
+```CSS
+/* comment */
+
+.enlarge {
+font-size: 14px;
+}
+```
+Good code:
+```CSS
+/* comment */
+
+.enlarge {
+  font-size: 14px;
+}
+```
 
 ## Instructions
 

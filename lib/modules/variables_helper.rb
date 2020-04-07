@@ -15,6 +15,9 @@ module Variables
   EXPECTED_INDENTATION_OF_0_SPACES = 'Expected indentation of 0 spaces'.freeze
   INDENTATION = '(indentation)'.freeze
 
+	EXPECTED_INDENTATION_OF_2_SPACES = 'Expected indentation of 2 spaces'.freeze
+	
+
   def self.comment_white_space_inside_after
     COMMENT_WHITE_SPACE_INSIDE_AFTER + ' ' + COMMENT_WHITESPACE_INSIDE
   end
@@ -33,5 +36,9 @@ module Variables
 
   def self.expected_indentation_of_zero_spaces
     EXPECTED_INDENTATION_OF_0_SPACES + ' ' + INDENTATION
+	end
+	
+	def self.expected_indentation_of_2_spaces
+    EXPECTED_INDENTATION_OF_2_SPACES + ' ' + INDENTATION
   end
 end
