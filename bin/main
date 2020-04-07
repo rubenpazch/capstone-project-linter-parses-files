@@ -4,6 +4,7 @@ require_relative '../lib/modules/file_helper'
 require_relative '../lib/modules/rules_helper'
 require_relative '../lib/modules/validations_helper'
 require_relative '../lib/modules/variables_helper'
+require_relative '../lib/list_errors'
 
 input_array = ARGV
 if !FileValidation.validate_path?(input_array[0])
@@ -23,21 +24,29 @@ elsif FileValidation.file_have_zero_lines?(input_array[0])
   exit(2)
 end
 
+results = Linters.new
+temp_Array = []
+
 total_lines = File.open(input_array[0]).count
 
+File.open(input_array[0]).each{|x| temp_Array << x}
+
 row = 1
-File.open(input_array[0]).each_with_index do |line, _idx|
-  LineValidations.comment_white_space_inside_validations(line, row)
-  LineValidations.unexpected_missing_end_of_source_newline(line, row) if total_lines == row
+temp_Array.each do |line|
+  results.add_errors_list(LineValidations.comment_white_space_inside_after(line, row))
+	results.add_errors_list(LineValidations.comment_white_space_inside_before(line, row))	
+  results.add_errors_list(LineValidations.unexpected_missing_end_of_source_newline(line, row)) if total_lines == row
   row += 1
 end
 
-LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
+results2 = LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
+results2.show_list_errors.each { |x| results.add_errors_list(x)  unless x.nil? }
 
-arr = LineValidations.show_list_errors
+# arr = LineValidations.show_list_errors
 # ordered_by_row = LineValidations.order_array_by_row(arr)
 # ordered_by_column = LineValidations.order_array_by_column(ordered_by_row)
-arr.each { |x| p x.show_message unless x.nil? }
+
+results.show_list_errors.each { |x| p x.show_message unless x.nil? }
 
 # n = x =~ %r{/\*}
 # m = x =~ %r{\*/}
