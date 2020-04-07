@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/rubenpazch/capstone-project-linter-parses-files">
-    <img src="ima/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h2 align="center">SASS Linter</h2>
