@@ -25,22 +25,25 @@ elsif FileValidation.file_have_zero_lines?(input_array[0])
 end
 
 results = Linters.new
-temp_Array = []
+temp_array = []
 
 total_lines = File.open(input_array[0]).count
 
-File.open(input_array[0]).each{|x| temp_Array << x}
+File.open(input_array[0]).each { |x| temp_array << x }
 
 row = 1
-temp_Array.each do |line|
+temp_array.each do |line|
   results.add_errors_list(LineValidations.comment_white_space_inside_after(line, row))
-	results.add_errors_list(LineValidations.comment_white_space_inside_before(line, row))	
+  results.add_errors_list(LineValidations.comment_white_space_inside_before(line, row))
   results.add_errors_list(LineValidations.unexpected_missing_end_of_source_newline(line, row)) if total_lines == row
   row += 1
 end
 
 results2 = LineValidations.expected_empty_line_before_comment(File.open(input_array[0]))
-results2.show_list_errors.each { |x| results.add_errors_list(x)  unless x.nil? }
+results2.show_list_errors.each { |x| results.add_errors_list(x) unless x.nil? }
+
+results3 = LineValidations.expected_indentation_of_zero_spaces(File.open(input_array[0]))
+results3.show_list_errors.each { |x| results.add_errors_list(x) unless x.nil? }
 
 # arr = LineValidations.show_list_errors
 # ordered_by_row = LineValidations.order_array_by_row(arr)

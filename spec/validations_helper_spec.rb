@@ -5,8 +5,8 @@ describe LineValidations do
   let(:line_nil) { nil }
   let(:line_empty) { '' }
   let(:line_white_space) { ' ' }
-	let(:line) { '/*comment*/\n' }
-	let(:line_with_new_line) { "/*comment*/\n" }
+  let(:line) { '/*comment*/\n' }
+  let(:line_with_new_line) { "/*comment*/\n" }
   let(:line_with_space_on_open_comment) { '/* comment */\n' }
   let(:line_not_new_line) { '/*comment*/' }
   let(:line_not_comment) { '.button {\n' }
@@ -125,10 +125,18 @@ describe LineValidations do
   end
 
   describe 'expected_empty_line_before_comment' do
-    context 'when lines is given' do
-      it 'return instance error class if line is need space after the open comment' do
+    context 'when array is given' do
+      it 'return instance linter class if line is need space after the open comment' do
         expect(LineValidations.expected_empty_line_before_comment(arr)).to be_an_instance_of(Linters)
       end
-    end    
+    end
+	end
+	
+	describe 'expected_indentation_of_zero_spaces' do
+    context 'when array is given' do
+      it 'return instance linter class if line is need space after the open comment' do
+        expect(LineValidations.expected_indentation_of_zero_spaces(arr)).to be_an_instance_of(Linters)
+      end
+    end
   end
 end

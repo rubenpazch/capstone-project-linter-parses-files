@@ -1,5 +1,7 @@
 require_relative '../../lib/errors'
 require_relative '../../lib/list_errors'
+require_relative '../../lib/modules/util'
+require_relative '../../lib/modules/variables_helper'
 
 module LineValidations
   @linters = Linters.new
@@ -63,14 +65,12 @@ module LineValidations
   end
 
   def self.unexpected_missing_end_of_source_newline(line, row)
-		column = line.length		
-		
+    column = line.length
+
     if line.match(/\n/).nil?
       Error.new(Variables::NO_MISSING_END_OF_SOURCE_NEWLINE,
                 Variables.unexpected_missing_end_of_source_newline,
-								Variables::LINTER, row, column)
-		else
-			nil
+                Variables::LINTER, row, column)
     end
   end
 
@@ -92,18 +92,32 @@ module LineValidations
   end
 
   def self.expected_indentation_of_zero_spaces(arr)
-    
-    new_arr.each_with_index do |line, idx|
-      next unless line[0] == ' '
+    arr.each_with_index do |line, idx|
+      if !line.match(%r{/\*}).nil?
+        next unless line[0] == ' '
 
-      @linters.add_errors_list(Error.new(	Variables::INDENTATION,
-                                					Variables.expected_indentation_of_zero_spaces,
-                                					Variables::LINTER, idx + 1, 1))
+        column = Util.index_white_space_string(line)
+        @linters.add_errors_list(Error.new(Variables::INDENTATION,
+                                           Variables.expected_indentation_of_zero_spaces,
+                                           Variables::LINTER, idx + 1, column))
+      elsif !line.match(/\./).nil?
+        next unless line[0] == ' '
+
+        column = Util.index_white_space_string(line)
+        @linters.add_errors_list(Error.new(Variables::INDENTATION,
+                                           Variables.expected_indentation_of_zero_spaces,
+                                           Variables::LINTER, idx + 1, column))
+      elsif !line.match(/\#/).nil?
+        next unless line[0] == ' '
+
+        column = Util.index_white_space_string(line)
+        @linters.add_errors_list(Error.new(Variables::INDENTATION,
+                                           Variables.expected_indentation_of_zero_spaces,
+                                           Variables::LINTER, idx + 1, column))
+      else
+        next
+      end
     end
-  end
-
-  def self.index_of_last_empty_char(line)
-    arr = line.chars
-    puts arr.inspect
+    @linters
   end
 end
