@@ -22,7 +22,7 @@ describe LineValidations do
         expect(LineValidations.check_is_comment?(line_not_comment)).to be false
       end
     end
-    context 'when line is not a comment' do
+    context 'when line is NOT given' do
       it 'return false if line is nil' do
         expect(LineValidations.check_is_comment?(line_empty)).to be false
       end

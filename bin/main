@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/modules/file_helper'
-require_relative '../lib/modules/rules_helper'
 require_relative '../lib/modules/validations_helper'
 require_relative '../lib/modules/variables_helper'
 require_relative '../lib/list_errors'
