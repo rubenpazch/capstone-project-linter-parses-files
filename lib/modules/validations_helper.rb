@@ -2,7 +2,6 @@ require_relative '../../lib/errors'
 require_relative '../../lib/list_errors'
 require_relative '../../lib/modules/util'
 require_relative '../../lib/modules/variables_helper'
-
 module LineValidations
   @linters = Linters.new
   def self.check_is_comment?(line)
@@ -66,12 +65,9 @@ module LineValidations
 
   def self.unexpected_missing_end_of_source_newline(line, row)
     column = line.length
-
-    if line.match(/\n/).nil?
-      Error.new(Variables::NO_MISSING_END_OF_SOURCE_NEWLINE,
-                Variables.unexpected_missing_end_of_source_newline,
-                Variables::LINTER, row, column)
-    end
+    # rubocop:disable Layout/LineLength
+    line.match(/\n/).nil? ? Error.new(Variables::NO_MISSING_END_OF_SOURCE_NEWLINE, Variables.unexpected_missing_end_of_source_newline, Variables::LINTER, row, column) : nil
+    # rubocop:enable Layout/LineLength
   end
 
   def self.expected_empty_line_before_comment(arr)

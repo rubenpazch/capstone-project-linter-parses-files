@@ -114,7 +114,9 @@ describe LineValidations do
   describe 'unexpected_missing_end_of_source_newline' do
     context 'when lines is given' do
       it 'return instance error class if line is need space after the open comment' do
+        # rubocop:disable Layout/LineLength
         expect(LineValidations.unexpected_missing_end_of_source_newline(line_not_new_line, 1)).to be_an_instance_of(Error)
+        # rubocop:enable Layout/LineLength
       end
     end
     context 'when lines is NOT given' do
@@ -130,9 +132,9 @@ describe LineValidations do
         expect(LineValidations.expected_empty_line_before_comment(arr)).to be_an_instance_of(Linters)
       end
     end
-	end
-	
-	describe 'expected_indentation_of_zero_spaces' do
+  end
+
+  describe 'expected_indentation_of_zero_spaces' do
     context 'when array is given' do
       it 'return instance linter class if line is need space after the open comment' do
         expect(LineValidations.expected_indentation_of_zero_spaces(arr)).to be_an_instance_of(Linters)
