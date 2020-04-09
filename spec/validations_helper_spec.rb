@@ -1,6 +1,6 @@
 require_relative '../lib/modules/validations_helper'
 require_relative '../lib/list_errors'
-# rubocop:disable Layout/LineLength
+
 describe LineValidations do
   let(:line_nil) { nil }
   let(:line_empty) { '' }
@@ -111,15 +111,15 @@ describe LineValidations do
     end
   end
 
-  describe 'unexpected_missing_end_of_source_newline' do
+  describe 'unexpected_missing_end_of_source_nwln' do
     context 'when lines is given' do
       it 'return instance error class if line is need space after the open comment' do
-        expect(LineValidations.unexpected_missing_end_of_source_newline(line_not_new_line, 1)).to be_an_instance_of(Error)
+        expect(LineValidations.unexpected_missing_end_of_source_nwln(line_not_new_line, 1)).to be_an_instance_of(Error)
       end
     end
     context 'when lines is NOT given' do
       it 'return false if line is nil' do
-        expect(LineValidations.unexpected_missing_end_of_source_newline(line_with_new_line, 1)).to be nil
+        expect(LineValidations.unexpected_missing_end_of_source_nwln(line_with_new_line, 1)).to be nil
       end
     end
   end
@@ -140,4 +140,3 @@ describe LineValidations do
     end
   end
 end
-# rubocop:enable Layout/LineLength

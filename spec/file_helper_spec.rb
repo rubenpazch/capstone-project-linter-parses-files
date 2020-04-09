@@ -1,17 +1,17 @@
 require_relative '../lib/modules/file_helper'
-# rubocop:disable Layout/LineLength
+
 describe FileValidation do
   let(:file_nil) { nil }
   let(:file_empty) { '' }
   let(:file_with_content) { 'testing' }
   let(:file_type_scss) { '//testing//file.scss' }
   let(:file_type_not_scss) { '//testing//file.css' }
-  let(:file_readable) { 'C:\wamp64\www\capstone-project-linter-parses-files\spec\examples\file_with_lines.scss' }
-  let(:file_not_readable) { 'C:\wamp64\www\capstone-project-linter-parses-files\spec\examples\file_not_readable.scss' }
+  let(:file_readable) { '.\spec\examples\file_with_lines.scss' }
+  let(:file_not_readable) { '.\spec\examples\file_not_readable.scss' }
 
-  let(:file_without_lines) { 'C:\wamp64\www\capstone-project-linter-parses-files\spec\examples\file_without_lines.scss' }
+  let(:file_without_lines) { '.\spec\examples\file_without_lines.scss' }
 
-  let(:file_not_exist) { 'C:\wamp64\www\capstone-project-linter-parses-files\spec\examples\not_exists.scss' }
+  let(:file_not_exist) { '.\spec\examples\not_exists.scss' }
 
   describe 'validate_path?' do
     context 'when file is given' do
@@ -70,4 +70,3 @@ describe FileValidation do
     end
   end
 end
-# rubocop:enable Layout/LineLength

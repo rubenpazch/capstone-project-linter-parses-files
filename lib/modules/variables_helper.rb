@@ -6,8 +6,8 @@ module Variables
   COMMENT_WHITE_SPACE_INSIDE_BEFORE = "Expected whitespace before '*/'".freeze
   COMMENT_WHITESPACE_INSIDE = '(comment-whitespace-inside)'.freeze
 
-  UNEXPECTED_MISSING_END_OF_SOURCE_NEWLINE = 'Unexpected missing end-of-source newline'.freeze
-  NO_MISSING_END_OF_SOURCE_NEWLINE = '(no-missing-end-of-source-newline)'.freeze
+  UNEXPECTED_MISSING_NEWLINE = 'Unexpected missing end-of-source newline'.freeze
+  NO_MISSING_NEWLINE = '(no-missing-end-of-source-newline)'.freeze
 
   EXPECTED_EMPTY_LINE_BEFORE_COMMENT = 'Expected empty line before comment'.freeze
   COMMENT_EMPTY_LINE_BEFORE = '(comment-empty-line-before)'.freeze
@@ -25,8 +25,8 @@ module Variables
     COMMENT_WHITE_SPACE_INSIDE_BEFORE + ' ' + COMMENT_WHITESPACE_INSIDE
   end
 
-  def self.unexpected_missing_end_of_source_newline
-    UNEXPECTED_MISSING_END_OF_SOURCE_NEWLINE + ' ' + NO_MISSING_END_OF_SOURCE_NEWLINE
+  def self.unexpected_missing_newline
+    UNEXPECTED_MISSING_NEWLINE + ' ' + NO_MISSING_NEWLINE
   end
 
   def self.expected_empty_line_before_comment

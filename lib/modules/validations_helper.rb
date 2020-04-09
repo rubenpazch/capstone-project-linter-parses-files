@@ -2,9 +2,12 @@ require_relative '../../lib/errors'
 require_relative '../../lib/list_errors'
 require_relative '../../lib/modules/util'
 require_relative '../../lib/modules/variables_helper'
-# rubocop:disable  Metrics/ModuleLength
+
 # rubocop:disable Style/GuardClause
-# rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/ModuleLength
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity
 module LineValidations
   @linters = Linters.new
   def self.check_is_comment?(line)
@@ -66,10 +69,11 @@ module LineValidations
     end
   end
 
-  def self.unexpected_missing_end_of_source_newline(line, row)
+  def self.unexpected_missing_end_of_source_nwln(line, row)
     column = line.length
-
-    line.match(/\n/).nil? ? Error.new(Variables::NO_MISSING_END_OF_SOURCE_NEWLINE, Variables.unexpected_missing_end_of_source_newline, Variables::LINTER, row, column) : nil
+    if line.match(/\n/).nil?
+      Error.new(Variables::NO_MISSING_NEWLINE, Variables.unexpected_missing_newline, Variables::LINTER, row, column)
+    end
   end
 
   def self.expected_empty_line_before_comment(arr)
@@ -123,23 +127,22 @@ module LineValidations
   def self.expected_indentation_of_2_spaces(arr)
     @linters = Linters.new
     arr.each_with_index do |line, idx|
-      if line.match(%r{/\*}).nil? && line.match(/\./).nil? && line.match(/\#/).nil?
-        next if line.match(/\}/)
-        next if line.match(/\\n/)
-        next if line.match(/^\s\s/)
-        next if (line =~ /\n/).zero?
+      next unless line.match(%r{/\*}).nil? && line.match(/\./).nil? && line.match(/\#/).nil?
+      next if line.match(/\}/)
+      next if line.match(/\\n/)
+      next if line.match(/^\s\s/)
+      next if (line =~ /\n/).zero?
 
-        column = Util.index_white_space_string(line)
-        @linters.add_errors_list(Error.new(Variables::INDENTATION,
-                                           Variables.expected_indentation_of_2_spaces,
-                                           Variables::LINTER, idx + 1, column))
-      else
-        next
-      end
+      column = Util.index_white_space_string(line)
+      @linters.add_errors_list(Error.new(Variables::INDENTATION,
+                                         Variables.expected_indentation_of_2_spaces,
+                                         Variables::LINTER, idx + 1, column))
     end
     @linters
   end
 end
-# rubocop:enable Layout/LineLength
 # rubocop:enable Style/GuardClause
-# rubocop:enable  Metrics/ModuleLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/PerceivedComplexity

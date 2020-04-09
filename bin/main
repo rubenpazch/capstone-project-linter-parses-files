@@ -35,7 +35,7 @@ row = 1
 temp_array.each do |line|
   results.add_errors_list(LineValidations.comment_white_space_inside_after(line, row))
   results.add_errors_list(LineValidations.comment_white_space_inside_before(line, row))
-  results.add_errors_list(LineValidations.unexpected_missing_end_of_source_newline(line, row)) if total_lines == row
+  results.add_errors_list(LineValidations.unexpected_missing_end_of_source_nwln(line, row)) if total_lines == row
   row += 1
 end
 
