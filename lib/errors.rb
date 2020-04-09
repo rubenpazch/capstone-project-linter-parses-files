@@ -13,6 +13,6 @@ class Error < Message
   end
 
   def show_message
-    "Error:  #{content} | #{type} #{detail} [#{row}, #{column}]"
+    "Error :  #{content} | #{type} #{detail} [#{row}, #{column}]"
   end
 end

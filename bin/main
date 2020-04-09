@@ -57,10 +57,5 @@ results4.show_list_errors.each do |x|
   results.add_errors_list(x) unless x.nil?
 end
 
-# arr = LineValidations.show_list_errors
-
-# ordered_by_row = Util.order_array_by_row(results.show_list_errors)
-# ordered_by_column = LineValidations.order_array_by_column(ordered_by_row)
-
-# ordered_by_row.each { |x| p x.show_message unless x.nil? }
+results.show_list_errors.sort! { |a, b| a.row == b.row ? a.column <=> b.column : a.row <=> b.row }
 results.show_list_errors.each { |x| p x.show_message unless x.nil? }
