@@ -40,8 +40,8 @@
     <a href="https://github.com/rubenpazch/capstone-project-linter-parses-files/issues">Report Bug</a>    &#10023;
     <a href="#Getting-Started">Getting Started</a> &#10023; 
     <a href="#Install">Installing</a> &#10023;
-    <a href="#Video-Presentation-of-the-project">Video Presentation of the project</a> &#10023;
     <a href="#Whats-is-included-on-this-project">Whats is included on this project</a> &#10023;
+    <a href="#Video-Presentation-of-the-project">Video Presentation of the project</a> &#10023;
     <a href="#authors">Author</a> &#10023;
      
   </p>
