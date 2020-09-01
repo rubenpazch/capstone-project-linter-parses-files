@@ -51,7 +51,7 @@
 <br/>
 
 
-<b>SASS linter with Ruby is a command-line application </b> built entirely with Ruby, like a developer sometimes we have some rules to follow in order to apply good practices in our code, writing good code is always good, it helps other programmers to maintain them the application, this app checks if you had written your code not using good practices and left you to know which the line and column that need to be changed in order to have a clean code, for example <b> (Comment white space inside after, Comment white space inside before, Unexpected missing end of source newline, Expected empty line before the comment, Expected indentation of zero spaces, Expected indentation of 2 spaces) </b>.
+<b>SASS linter with Ruby is a command-line application </b> built entirely with Ruby, like a developer sometimes we have some good programming practices to apply  in our code, writing clean code is always good, it helps other programmers to maintain the application, this app checks if you had written your code using good practices and left you know which line and column need to be changed, for example <b> (Comment white space inside after, Comment white space inside before, Unexpected missing end of source newline, Expected empty line before the comment, Expected indentation of zero spaces, Expected indentation of 2 spaces),</b> are features from this project..
 
 <br/>
 
