@@ -361,9 +361,8 @@ You can see the loom presentation on the next link [here](https://www.loom.com/s
 
 ## Contributing
 
-This is an education project as a part of the Microverse so contributing is not accepted. 
+This project was created for educational purposes as part of the Microverse web development curriculum; contributing is not accepted.
 
-Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues](https://github.com/rubenpazch/capstone-conference-page/issues).
 
